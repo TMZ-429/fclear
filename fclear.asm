@@ -19,7 +19,6 @@ section .bss
 section .data                            ;
     prompt_fname db  'Enter file name >_';
     pfname_len   equ $ - prompt_fname    ; 
-    total_loops  equ 2                   ; <- Amount of times it iterates through the file & flips each byte
 
 section .text
     global _start        ;
