@@ -67,7 +67,7 @@ post_remover:
 main_loop:
     push rcx                      ;
     mov rax, F_LSEEK              ; Go to the start of the file to re-truncate it
-                                  ; RSI is supposed to be zero, but we already put it as zero in the last kernel call
+    mov rsi, 0                    ; Offset 0 (start at the start)
     mov rdx, 0                    ;
     syscall                       ;
 
