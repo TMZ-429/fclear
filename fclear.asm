@@ -38,16 +38,8 @@ _start:
     mov rdx, 256         ;
     syscall              ;
 
-remove_endline:          ; Remove the newline character at the end
-    cmp byte[rsi], 0xA   ; check if the current character is the newline character
-    je remover           ; if it is, jump to the remover section and remove it, while moving on to the next process
-    inc rsi              ; if it isn't, move on to the next character
-    cmp byte[rsi], 0     ; this is just in case the input somehow doesn't have a newline character (if we're somehow at the end of the string)
-    jne remove_endline   ;
-    jmp post_remover     ;
-remover:
-    mov byte[rsi], 0     ;
-post_remover:
+    mov byte [rsi + rax - 1], 0; delete the 0xA/newline character at the end of the file name
+
     mov rax, F_OPEN      ; Open file
     mov rdi, fname       ;
     mov rsi, 2           ; Read & Write
